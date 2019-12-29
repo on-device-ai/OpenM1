@@ -76,6 +76,8 @@ BEGIN_MESSAGE_MAP(COpenM1Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_LOAD_PROCS, &COpenM1Dlg::OnBnClickedLoadProcs)
 	ON_BN_CLICKED(IDC_RUN_PROCS, &COpenM1Dlg::OnBnClickedRunProcs)
 	ON_BN_CLICKED(IDC_CLEAR_PROCS, &COpenM1Dlg::OnBnClickedClearProcs)
+	ON_BN_CLICKED(IDC_ITEM_UP, &COpenM1Dlg::OnBnClickedItemUp)
+	ON_BN_CLICKED(IDC_ITEM_DOWN, &COpenM1Dlg::OnBnClickedItemDown)
 END_MESSAGE_MAP()
 
 
@@ -186,7 +188,7 @@ void COpenM1Dlg::initListCtrl()
 	m_pListCtrl->ShowWindow(SW_SHOW);
 
 	m_pListCtrl->InsertColumn(0, _T("No."), LVCFMT_CENTER, 50);
-	m_pListCtrl->InsertColumn(1, _T("Procedure"), LVCFMT_CENTER, 325);
+	m_pListCtrl->InsertColumn(1, _T("Procedure"), LVCFMT_CENTER, 350);
 }
 
 void COpenM1Dlg::OnBnClickedOk()
@@ -224,7 +226,6 @@ void COpenM1Dlg::OnBnClickedNewProc()
 	
 	m_pListCtrl->SetItemEx(item_count, 1, btn);
 }
-
 
 void COpenM1Dlg::OnBnClickedDelProc()
 {
@@ -404,4 +405,57 @@ void COpenM1Dlg::OnBnClickedRunProcs()
 void COpenM1Dlg::OnBnClickedClearProcs()
 {
 	m_pListCtrl->DeleteAllItems();
+}
+
+BOOL COpenM1Dlg::MoveItem(int from, int to)
+{
+	if (from == to || from < 0 || to < 0) {
+		return FALSE;
+	}
+
+	if (from < to) {
+		if (to < m_pListCtrl->GetItemCount()) {
+			int tmp_from = from; int tmp_to = to;
+			to = tmp_from; from = tmp_to;
+		}
+		else {
+			return FALSE;
+		}
+	}
+
+	CMyButton* from_btn = (CMyButton*)m_pListCtrl->GetCtrl(from, 1);
+	CMyButton* to_btn = new CMyButton();
+
+	m_pListCtrl->InsertItem(to, m_pListCtrl->GetItemText(from, 0));
+
+	to_btn->set_desc(from_btn->get_desc());
+	to_btn->set_cmd(from_btn->get_cmd());
+	to_btn->set_batch_call(from_btn->is_batch_call());
+
+	to_btn->Create(to_btn->get_desc(), WS_CHILD | WS_VISIBLE, CRect(0, 0, 80, 20), this, m_pListCtrl->GetDlgCtrlID() + 0);
+
+	m_pListCtrl->SetItemEx(to, 1, to_btn);
+
+	m_pListCtrl->DeleteItem(from + 1);
+	
+	return TRUE;
+}
+
+void COpenM1Dlg::OnBnClickedItemUp()
+{
+	POSITION pos = m_pListCtrl->GetFirstSelectedItemPosition();
+
+	int nItem = m_pListCtrl->GetNextSelectedItem(pos);
+
+	MoveItem(nItem, nItem - 1);
+}
+
+
+void COpenM1Dlg::OnBnClickedItemDown()
+{
+	POSITION pos = m_pListCtrl->GetFirstSelectedItemPosition();
+
+	int nItem = m_pListCtrl->GetNextSelectedItem(pos);
+
+	MoveItem(nItem, nItem + 1);
 }

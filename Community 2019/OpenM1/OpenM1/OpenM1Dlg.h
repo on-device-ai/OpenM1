@@ -31,6 +31,8 @@ private:
 	//ListCtrlCustom
 	CListCtrlCustom* m_pListCtrl;
 
+	BOOL COpenM1Dlg::MoveItem(int from, int to);
+
 public:
 	CListCtrlCustom* get_list_ctrl() { return m_pListCtrl; }
 
@@ -53,4 +55,6 @@ public:
 	afx_msg void OnBnClickedLoadProcs();
 	afx_msg void OnBnClickedRunProcs();
 	afx_msg void OnBnClickedClearProcs();
+	afx_msg void OnBnClickedItemUp();
+	afx_msg void OnBnClickedItemDown();
 };
