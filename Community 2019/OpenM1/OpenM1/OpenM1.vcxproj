@@ -217,6 +217,7 @@
     <None Include="res\OpenM1.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\on-device-ai.bmp" />
     <Image Include="res\OpenM1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

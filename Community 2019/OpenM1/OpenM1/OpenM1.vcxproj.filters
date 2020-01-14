@@ -77,5 +77,8 @@
     <Image Include="res\OpenM1.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\on-device-ai.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

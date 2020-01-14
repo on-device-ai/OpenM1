@@ -6,7 +6,3 @@ $1
 Installing your distro
 powershell "Add-AppxPackage .\Ubuntu.appx"
 0
-$2
-Setup Ununtu 16.04 Unix account and password
-ubuntu1604
-0

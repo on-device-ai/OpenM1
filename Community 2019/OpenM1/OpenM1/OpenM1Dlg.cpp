@@ -111,9 +111,7 @@ BOOL COpenM1Dlg::OnInitDialog()
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-
-	// TODO: Add extra initialization here
-
+	
 	initListCtrl();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -459,3 +457,4 @@ void COpenM1Dlg::OnBnClickedItemDown()
 
 	MoveItem(nItem, nItem + 1);
 }
+

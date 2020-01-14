@@ -1,0 +1,4 @@
+## Company Description  
+[On-Device AI Co. Ltd.](https://on-device-ai.com/) is a technology service company that assists customers to build AI and machine learning technologies into their products or mobile phone apps. Our services include: 1. building machine learning or deep learning models for devices, can choose to use an open-source model or create a specific model by us; 2. using customers’ datasets to train the models on the workstation or cloud; 3. converting trained the models to device-specific formats and optimizing them, then using the converted models to execute inference on devices; 4. system software (such as device driver) and firmware development for the AIoT (AI + IoT) devices.  
+  
+![190114_1](https://user-images.githubusercontent.com/44540872/72335643-483e7c80-36fa-11ea-91b7-bb3f989bb6cb.png)
